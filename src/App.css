@@ -1,0 +1,48 @@
+/* 
+* HEADER
+*/
+header {
+    height: 60px;
+    background-color: #fff;
+    padding: 0 10px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+.header-container {
+    max-width: 1400px;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.header-left {
+    display: flex;
+    align-items: center;
+}
+.header-left-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+.header-left-brand img {
+    width: 80px;
+}
+.header-left-brand h2 {
+    font-weight: 500;
+}
+.header-right {
+    display: flex;
+    align-items: center;
+}
+.header-right-login {
+    display: flex;
+    gap: 14px;
+}
+.header-right-login a:hover {
+    border-bottom: 1px solid black;
+}
+
+@media only screen and (max-width: 800px) {
+    .header-left-brand h2 {
+        display: none;
+    }
+}
