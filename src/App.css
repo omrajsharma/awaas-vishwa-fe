@@ -51,6 +51,8 @@ header {
 *   FOOTER
 */
 footer {
+    position: fixed;
+    bottom: 0;
     width: 100%;
     height: 40px;
     display: flex;
@@ -62,6 +64,11 @@ footer {
     font-size: 12px;
     font-weight: 300;
     text-align: center;
+}
+@media only screen and (max-width: 800px) {
+    footer {
+        display: none;
+    }
 }
 
 /* 
