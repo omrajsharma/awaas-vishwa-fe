@@ -9,7 +9,7 @@ const RegisterPage = () => {
   const username = React.useRef();
   const password = React.useRef();
 
-  const handleSubmit = (ev) => {
+  const handleSubmit = async (ev) => {
     ev.preventDefault();
 
     const nameVal = name.current.value;
@@ -18,32 +18,24 @@ const RegisterPage = () => {
     const usernameVal = username.current.value;
     const passwordVal = password.current.value;
 
-    const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    const usernameFormat = /^[A-Za-z][A-Za-z0-9_]{1,29}$/
-    const passwordFormat = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
-    if (nameVal.length < 2 || name.length > 50) {
-      alert('Name should be greater than 1 and less than equal 50 characters', 'error')
-      return
-    }
-    if (phoneVal < 1000000000) {
-      alert('Invalid Phone Number', 'error')
-      return
-    }
-    if (!mailformat.test(emailVal)) {
-      alert('Invalid email', 'error')
-      return
-    }
-    if (usernameVal.length < 3 || usernameVal.length > 30) {
-      alert('Username should be greater than 2 and less than equals 30 characters', 'error')
-      return
-    }
-    if (!usernameFormat.test(usernameVal)) {
-      alert('Invalid username! first character should be alphabet [A-Za-z] and other characters can be alphabets, numbers or an underscore so, [A-Za-z0-9_].', 'error')
-    }
-    if (!passwordFormat.test(passwordVal)) {
-      alert('password should have minimum of eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:', 'error')
-      return
+    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/auth/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: nameVal, 
+        phone: phoneVal, 
+        email: emailVal, 
+        username: usernameVal, 
+        password: passwordVal
+      })
+    })
+    const data = await response.json();
+    if (response.ok) {
+      alert('User Registered', 'success')
+    } else {
+      alert(data.error, 'error')
     }
   };
 
@@ -60,6 +52,7 @@ const RegisterPage = () => {
               variant="filled"
               inputRef={name}
               required
+              autoComplete='true'
             />
             <TextField
               fullWidth
@@ -69,6 +62,7 @@ const RegisterPage = () => {
               type="number"
               inputRef={phone}
               required
+              autoComplete='true'
             />
             <TextField
               fullWidth
@@ -77,6 +71,7 @@ const RegisterPage = () => {
               variant="filled"
               inputRef={email}
               required
+              autoComplete='true'
             />
             <TextField
               fullWidth
@@ -85,6 +80,7 @@ const RegisterPage = () => {
               variant="filled"
               inputRef={username}
               required
+              autoComplete='true'
             />
             <TextField
               fullWidth
@@ -94,6 +90,7 @@ const RegisterPage = () => {
               type="password"
               inputRef={password}
               required
+              autoComplete='true'
             />
             <Button
               variant="contained"
