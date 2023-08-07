@@ -1,8 +1,10 @@
 import React from 'react'
+import { UserContext } from '../../context/UserContext'
 import Logo from '../../assets/logo.png'
 import { Link } from 'react-router-dom'
 
 const Header = () => {
+  const {userInfo} = React.useContext(UserContext)
   return (
     <header>
       <div className="header-container">
@@ -14,8 +16,19 @@ const Header = () => {
         </div>
         <div className="header-right">
           <div className="header-right-login">
-            <Link to="/login">Login</Link>
-            <Link to="/register">register</Link>
+            {
+              userInfo ? (
+                <>
+                  <Link to="/create">Create Post</Link>
+                  <Link >Logout</Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/login">login</Link>
+                  <Link to="/register">Signup</Link>
+                </>
+              )
+            }
           </div>
         </div>
       </div>

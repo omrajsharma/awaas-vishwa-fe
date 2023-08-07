@@ -1,9 +1,11 @@
 import React from "react";
+import { UserContext } from "../context/UserContext";
 import { TextField, Button } from "@mui/material";
 import alert from "../utility/alert";
 import { Navigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const {setUserInfo} = React.useContext(UserContext);
   const [redirect, setRedirect] = React.useState(false);
   const username = React.useRef();
   const password = React.useRef();
@@ -28,6 +30,7 @@ const LoginPage = () => {
     const data = await response.json();
     if (response.ok) {
       alert(data.success, 'success')
+      setUserInfo(data.data)
       setRedirect(true)
     } else {
       alert(data.error, 'error')
