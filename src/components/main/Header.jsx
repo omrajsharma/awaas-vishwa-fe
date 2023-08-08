@@ -4,7 +4,16 @@ import Logo from '../../assets/logo.png'
 import { Link } from 'react-router-dom'
 
 const Header = () => {
-  const {userInfo} = React.useContext(UserContext)
+  const {userInfo, setUserInfo} = React.useContext(UserContext)
+
+  const logoutUser = () => {
+    fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/auth/logout`, {
+      credentials: 'include',
+      method: 'POST'
+    })
+    setUserInfo(null);
+  }
+
   return (
     <header>
       <div className="header-container">
@@ -20,7 +29,7 @@ const Header = () => {
               userInfo ? (
                 <>
                   <Link to="/create">Create Post</Link>
-                  <Link >Logout</Link>
+                  <Link onClick={logoutUser}>Logout</Link>
                 </>
               ) : (
                 <>
