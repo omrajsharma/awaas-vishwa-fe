@@ -95,3 +95,50 @@ footer {
     text-align: center;
     margin-bottom: 20px;
 }
+
+/* 
+*   CREATE AD PAGE
+*/
+.create-ad-page {
+    height: calc(100vh - 100px);
+    display: flex;
+    align-items: center;
+}
+.create-ad-container {
+    max-width: 500px;
+    margin: auto;
+    padding: 10px;
+    width: 100%;
+}
+.create-ad-form {
+    padding: 20px 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-radius: 14px;
+}
+.create-ad-form h1 {
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.create-ad-form input::file-selector-button {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #1876d2;
+    padding: 0.5em;
+    border: thin solid grey;
+    border-radius: 3px;
+}
+.create-ad-img-container {
+    margin-top: 10px;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+}
+.create-ad-img-input {
+    margin-bottom: 10px;
+}
+.create-ad-img img {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 12px;
+}

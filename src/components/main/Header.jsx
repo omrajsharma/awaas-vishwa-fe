@@ -36,7 +36,7 @@ const Header = () => {
             {
               userInfo ? (
                 <>
-                  <Link to="/create">Create Post</Link>
+                  <Link to="/create-ad">List My Property</Link>
                   <Link onClick={logoutUser}>Logout</Link>
                 </>
               ) : (
