@@ -2,6 +2,7 @@ import React from "react";
 import { TextField, Button } from "@mui/material";
 import alert from "../utility/alert";
 import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const RegisterPage = () => {
   const [redirect, setRedirect] = React.useState(false);
@@ -106,6 +107,9 @@ const RegisterPage = () => {
             >
               Sign Up
             </Button>
+            <div id="login-link">
+          Already have an account?<Link to="/login"><div className="login-btn">Login</div></Link>
+        </div>
           </form>
         </div>
       </div>
