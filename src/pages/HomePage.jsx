@@ -1,17 +1,21 @@
 import React from "react";
 import { itemDateFormatter } from "../utility/DateUtils";
 import { Button } from "@mui/material";
-import alert from "../utility/alert";
 
 const HomePage = () => {
   const [itemList, setItemList] = React.useState([]);
   const [pageNo, setPageNo] = React.useState(1);
+  const [noMoreItems, setNoMoreItems] = React.useState(false);
 
   React.useEffect(() => {
     fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/items?page=${pageNo}`)
       .then((response) => response.json())
       .then((data) => {
-        setItemList(data.data);
+        if (data.data.length > 0) {
+          setItemList(data.data);
+        } else {
+          setNoMoreItems(true);
+        }
       });
   }, []);
 
@@ -22,7 +26,7 @@ const HomePage = () => {
       if (data.data.length > 0) {
         setItemList([...itemList, ...data.data]);
       } else {
-        alert('No More Items', 'error');
+        setNoMoreItems(true);
       }
     });
     setPageNo(pageNo+1);
@@ -35,9 +39,15 @@ const HomePage = () => {
           itemList.map((item, key) => <ItemCard key={item.id} {...item} />)}
       </div>
       <div className="next-page">
-        <Button variant="contained" onClick={getNewPage}>
-          Load More
-        </Button>
+        { noMoreItems ?
+            <Button variant="contained" disabled >
+              No More Items
+            </Button>
+            :
+            <Button variant="contained" onClick={getNewPage}>
+              Load More
+            </Button>
+        }
       </div>
     </>
   );
