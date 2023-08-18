@@ -2,6 +2,8 @@
 * HEADER
 */
 header {
+    position: sticky;
+    top: 0;
     height: 60px;
     background-color: #fff;
     padding: 0 10px;
@@ -51,8 +53,6 @@ header {
 *   FOOTER
 */
 footer {
-    position: fixed;
-    bottom: 0;
     width: 100%;
     height: 40px;
     display: flex;
