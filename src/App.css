@@ -1,4 +1,24 @@
 /* 
+*   LOADING
+*/
+.loading {
+    width: 100%;
+    height: 100vh;
+}
+.loading-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loading-container img {
+    width: 300px;
+}
+
+/* 
 * HEADER
 */
 header {
