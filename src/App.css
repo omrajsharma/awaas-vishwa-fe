@@ -120,7 +120,7 @@ footer {
 *   CREATE AD PAGE
 */
 .create-ad-page {
-    height: calc(100vh - 100px);
+    min-height: calc(100vh - 100px);
     display: flex;
     align-items: center;
 }
@@ -255,7 +255,7 @@ footer {
     padding: 10px;
     display: flex;
     gap: 20px;
-    min-height: calc(100vh - 60px);
+    min-height: calc(100vh - 100px);
 }
 .item-detail-imgs, .item-detail-body {
     width: 50%;
