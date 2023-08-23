@@ -3,6 +3,7 @@ import { UserContext } from "../context/UserContext";
 import { TextField, Button } from "@mui/material";
 import alert from "../utility/alert";
 import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   const {setUserInfo} = React.useContext(UserContext);
@@ -73,6 +74,11 @@ const LoginPage = () => {
             >
               Login
             </Button>
+                 <div id="login-link">Create a new account? <Link to="/register">
+                 <div className="login-btn">SignUp
+                </div>
+              </Link>
+            </div>
           </form>
         </div>
       </div>
