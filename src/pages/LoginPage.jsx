@@ -74,9 +74,11 @@ const LoginPage = () => {
             >
               Login
             </Button>
-            <div id="login-link">
-           Create a new account? <Link to="/register"><div className="login-btn">SignUp</div></Link>
-        </div>
+                 <div id="login-link">Create a new account? <Link to="/register">
+                 <div className="login-btn">SignUp
+                </div>
+              </Link>
+            </div>
           </form>
         </div>
       </div>
