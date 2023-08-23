@@ -1,7 +1,29 @@
 /* 
+*   LOADING
+*/
+.loading {
+    width: 100%;
+    height: 100vh;
+}
+.loading-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loading-container img {
+    width: 300px;
+}
+
+/* 
 * HEADER
 */
 header {
+    position: sticky;
+    top: 0;
     height: 60px;
     background-color: #fff;
     padding: 0 10px;
@@ -51,8 +73,6 @@ header {
 *   FOOTER
 */
 footer {
-    position: fixed;
-    bottom: 0;
     width: 100%;
     height: 40px;
     display: flex;
@@ -100,7 +120,7 @@ footer {
 *   CREATE AD PAGE
 */
 .create-ad-page {
-    height: calc(100vh - 100px);
+    min-height: calc(100vh - 100px);
     display: flex;
     align-items: center;
 }
@@ -142,12 +162,170 @@ footer {
     max-height: 200px;
     border-radius: 12px;
 }
+ /* 
+*   login btn in signup form
+*/
 #login-link{
     margin-top: 10px;
   }
-  .login-btn{
+.login-btn{
     color: #2b6be2 ; 
     font-size: 16px ;
     font-weight: 600 ;
     display:inline 
-  }
+  } 
+
+/* 
+*   HOME PAGE
+*/
+.item-list {
+    max-width: 1200px;
+    margin: auto;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.item-card-container {
+    width: 25%;
+    padding: 10px;
+}
+.item-card {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+.item-card-imgs {
+    height: 300px;
+    display: flex;
+    overflow: scroll;
+    border-radius: 12px 12px 0 0;
+}
+.item-card-imgs::-webkit-scrollbar {
+  display: none;
+}
+.item-card-imgs img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.img-card-body {
+    padding: 8px;
+}
+.img-card-price {
+    font-size: 22px;
+    font-weight: 500;
+}
+.img-card-title {
+    color: #666;
+    font-size: 14px;
+}
+.img-card-row-space-between {
+    display: flex;
+    justify-content: space-between;
+}
+.img-card-location {
+    color: #666;
+    font-size: 12px;
+}
+.img-card-footer {
+    padding: 0 8px 8px 8px ;
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    font-weight: 300;
+    font-size: 10px;
+}
+@media only screen and (max-width: 1200px) {
+    .item-card-container {
+        width: 33.33%;
+    }
+}
+@media only screen and (max-width: 900px) {
+    .item-card-container {
+        width: 50%;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .item-card-container {
+        width: 100%;
+    }
+}
+.next-page {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* 
+*   ITEM DETAIL PAGE
+*/
+.item-detail {
+    margin-top: 40px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 10px;
+    display: flex;
+    gap: 20px;
+    min-height: calc(100vh - 100px);
+}
+.item-detail-imgs, .item-detail-body {
+    width: 50%;
+}
+.item-detail-imgs {
+    max-height: 500px;
+    display: flex;
+    overflow: scroll;
+}
+.item-detail-imgs img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.item-detail-imgs::-webkit-scrollbar {
+    display: none;
+}
+.item-detail-basic, .item-detail-author, .item-detail-description {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+.item-detail-price {
+    font-size: 32px;
+    font-weight: 500;
+}
+.item-detail-title {
+    font-size: 14px;
+    color: #666;
+}
+.item-detail-row-space-between {
+    display: flex;
+    justify-content: space-between;
+}
+.item-detail-row-space-between p {
+    font-size: 12px;
+    color: #666;
+}
+.item-detail-author {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.item-detail-author-name {
+    font-weight: 500;
+}
+.item-detail-description p {
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 4px;
+}
+@media only screen and (max-width: 700px) {
+    .item-detail {
+        flex-direction: column;
+    }
+    .item-detail-imgs, .item-detail-body {
+        width: 100%;
+    }
+}
