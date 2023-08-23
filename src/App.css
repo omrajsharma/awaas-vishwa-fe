@@ -309,3 +309,11 @@ footer {
     color: #444;
     margin-bottom: 4px;
 }
+@media only screen and (max-width: 700px) {
+    .item-detail {
+        flex-direction: column;
+    }
+    .item-detail-imgs, .item-detail-body {
+        width: 100%;
+    }
+}
