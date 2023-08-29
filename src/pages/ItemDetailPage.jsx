@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Navigate, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import Loading from '../components/util/Loading';
 import { UserContext } from '../context/UserContext';
 import { itemDateFormatter } from '../utility/DateUtils';
@@ -15,8 +15,16 @@ const ItemDetailPage = () => {
     const [itemDetails, setItemDetails] = React.useState();
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/items/${itemId}`)
-        .then((response) => response.json())
+        fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/items/${itemId}`, {
+            credentials: 'include'
+        })
+        .then((response) => {
+            if (response.status == 401) {
+                setRedirectToLogin(true);
+                return;
+            }
+            return response.json()
+        })
         .then((data) => {
             if (data.data) {
                 setItemDetails(data.data);
@@ -81,14 +89,19 @@ const ItemDetailPage = () => {
                 </div>
             </div>
             <div className="item-detail-author">
-                <div className="item-detail-author-name">{itemDetails.author.name}</div>
-                <div className="item-detail-author-contact">
-                    {   
-                        disableInterestBtn ? 
-                        <Button variant="contained" disabled>Interested</Button> :
-                        <Button variant="contained" onClick={handleContact}>Send Interest</Button>
-                    }
-                </div>
+                {   itemDetails?.edit ? 
+                    (<>
+                        <Link to={'/edit/' + itemId}>
+                            <Button variant="contained">Edit</Button>
+                        </Link>
+                    </>)
+                    : (<>
+                        <div className="item-detail-author-name">{itemDetails.author.name}</div>
+                        <div className="item-detail-author-contact">
+                            <Button variant="contained" disabled={disableInterestBtn} onClick={handleContact}>{disableInterestBtn ? 'Interested' : 'Send Interest'}</Button>
+                        </div>
+                    </>)
+                }
             </div>
             <div className="item-detail-description">
                 {itemDetails.description.split("\n").map((line, index) => (
