@@ -3,6 +3,7 @@ import { itemDateFormatter } from "../utility/DateUtils";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { numberToCommaString } from "../utility/numberUtils";
+import ScrollButton from "../components/util/ScrollButton";
 
 const HomePage = () => {
   const [itemList, setItemList] = React.useState([]);
@@ -36,6 +37,7 @@ const HomePage = () => {
 
   return (
     <>
+    <ScrollButton />l
       <div className="item-list">
         {itemList.length > 0 &&
           itemList.map((item, key) => <ItemCard key={item.id} {...item} />)}

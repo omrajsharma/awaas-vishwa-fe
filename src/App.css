@@ -458,3 +458,36 @@ footer, .footer-pad {
     font-size: 14px;
     color: #444;
 }
+
+/* 
+*   Button
+*/
+
+.scroll_button {
+    padding-top: 0.26rem;
+    padding-bottom: 0.26rem; 
+    padding-left: 0.78rem;
+    padding-right: 0.78rem;
+    border: none;
+    border-radius: 9999px; 
+    font-weight: 500;
+    font-size: 16px;
+    color: #414a55;
+    background-color: #dadbdcdb;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+
+    position: fixed;
+    right: 30px;
+    bottom: 28px;
+}
+
+.scroll_button:hover {
+    background-color: #b4b6b8d7;
+    cursor: pointer
+}
+
+.scroll_button:active {
+    scale: 1.05
+}
