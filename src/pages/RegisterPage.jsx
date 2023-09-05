@@ -6,6 +6,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import Tooltip from '@mui/material/Tooltip';
+import ReCAPTCHA from "react-google-recaptcha";
 
 const RegisterPage = () => {
   const [redirect, setRedirect] = React.useState(false);
@@ -15,6 +16,7 @@ const RegisterPage = () => {
   const email = React.useRef();
   const username = React.useRef();
   const password = React.useRef();
+  const [verify, setVerify] = React.useState(false);
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
@@ -51,6 +53,17 @@ const RegisterPage = () => {
     return <Navigate to={'/login'} />
   }
 
+  const onChange = (value) => {
+    console.log("Captcha value:", value);
+    setVerify(true);
+  }
+
+  const recaptchaStyle = {
+    display: "inline-block",
+    width: "100%",
+    marginTop: "20px",
+  }
+
   return (
     <div className="register-page">
       <div className="register-container">
@@ -64,7 +77,7 @@ const RegisterPage = () => {
               variant="filled"
               inputRef={name}
               required
-              autoComplete='true'
+              autoComplete="true"
             />
             <TextField
               fullWidth
@@ -74,7 +87,7 @@ const RegisterPage = () => {
               type="number"
               inputRef={phone}
               required
-              autoComplete='true'
+              autoComplete="true"
             />
             <TextField
               fullWidth
@@ -83,7 +96,7 @@ const RegisterPage = () => {
               variant="filled"
               inputRef={email}
               required
-              autoComplete='true'
+              autoComplete="true"
             />
             <TextField
               fullWidth
@@ -92,13 +105,16 @@ const RegisterPage = () => {
               variant="filled"
               inputRef={username}
               required
-              autoComplete='true'
+              autoComplete="true"
               InputProps={{
                 endAdornment: (
-                  <Tooltip placement="top-start" title="First character should be alphabet [A-Za-z] and other characters can be alphabets, numbers or an underscore so, [A-Za-z0-9_]." arrow>
-                  <InputAdornment position="end">
-                    <InfoOutlinedIcon fontSize="small" />
-                  </InputAdornment>
+                  <Tooltip
+                    placement="top-start"
+                    title="First character should be alphabet [A-Za-z] and other characters can be alphabets, numbers or an underscore so, [A-Za-z0-9_]."
+                    arrow>
+                    <InputAdornment position="end">
+                      <InfoOutlinedIcon fontSize="small" />
+                    </InputAdornment>
                   </Tooltip>
                 ),
               }}
@@ -108,34 +124,47 @@ const RegisterPage = () => {
               id="filled-basic"
               label="password"
               variant="filled"
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               inputRef={password}
               required
-              autoComplete='true'
+              autoComplete="true"
               InputProps={{
                 endAdornment: (
-                  <Tooltip placement="top-start" title="Password should have minimum of eight characters, at least one uppercase letter, one lowercase letter, one number and one special character." arrow>
-                  <InputAdornment position="end">
-                    <IconButton fontSize="small"
-                      onClick={() => setShowPassword(!showPassword)}
-                      edge="end"
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
+                  <Tooltip
+                    placement="top-start"
+                    title="Password should have minimum of eight characters, at least one uppercase letter, one lowercase letter, one number and one special character."
+                    arrow>
+                    <InputAdornment position="end">
+                      <IconButton
+                        fontSize="small"
+                        onClick={() => setShowPassword(!showPassword)}
+                        edge="end">
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
                   </Tooltip>
                 ),
               }}
             />
+            <div className="recaptchaContainer">
+              <ReCAPTCHA
+                sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                onChange={onChange}
+                className="recaptcha"
+              />
+            </div>
             <Button
               variant="contained"
               sx={{ marginTop: "20px", width: "100%" }}
               type="submit"
-            >
+              className="signup-btn"
+              disabled={!verify}>
               Sign Up
             </Button>
-               <div id="login-link">Already have an account?<Link to="/login">
-               <div className="login-btn">Login</div>
+            <div id="login-link">
+              Already have an account?
+              <Link to="/login">
+                <div className="login-btn">Login</div>
               </Link>
             </div>
           </form>
