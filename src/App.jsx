@@ -23,6 +23,8 @@ const App = () => {
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/item/:itemId' element={<ItemDetailPage />} />
         <Route path='/edit/:itemId' element={<EditAdPage />} />
+        <Route path='/profile' element={<ProfilePage />} />
+
         <Route path='*' element={<NotFound404 />} />
       </Route>
     </Routes>

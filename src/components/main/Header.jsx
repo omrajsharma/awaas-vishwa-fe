@@ -14,13 +14,13 @@ const Header = () => {
     setUserInfo(null);
   }
 
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/auth/profile`, {
-      credentials: 'include'
-    })
-    .then(res => res.json())
-    .then(data => setUserInfo(data.data))
-  }, [])
+  // useEffect(() => {
+  //   fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/auth/profile`, {
+  //     credentials: 'include'
+  //   })
+  //   .then(res => res.json())
+  //   .then(data => setUserInfo(data.data))
+  // }, [])
 
   return (
     <header>
@@ -37,6 +37,8 @@ const Header = () => {
               userInfo ? (
                 <>
                   <Link to="/create-ad">List My Property</Link>
+                  <Link to="/profile">Profile</Link>
+
                   <Link onClick={logoutUser}>Logout</Link>
                 </>
               ) : (
