@@ -37,7 +37,7 @@ const HomePage = () => {
 
   return (
     <>
-    <ScrollButton />l
+    <ScrollButton />
       <div className="item-list">
         {itemList.length > 0 &&
           itemList.map((item, key) => <ItemCard key={item.id} {...item} />)}
