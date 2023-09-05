@@ -22,7 +22,7 @@ const Profile = () => {
   const {userInfo, setUserInfo} = React.useContext(UserContext)
 
   useEffect(() => {
-    fetch(`https://awaas-vishwa-be.onrender.com/api/v1/profile`, {
+    fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/profile`, {
       credentials: 'include'
     })
     .then(response => response.json())
@@ -34,7 +34,7 @@ const Profile = () => {
   }, []);
 
   const logoutUser = () => {
-    fetch(`https://awaas-vishwa-be.onrender.com/api/v1/auth/logout`, {
+    fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/auth/logout`, {
       credentials: 'include',
       method: 'POST'
     })

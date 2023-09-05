@@ -10,7 +10,7 @@ const HomePage = () => {
   const [noMoreItems, setNoMoreItems] = React.useState(false);
 
   React.useEffect(() => {
-    fetch(`https://awaas-vishwa-be.onrender.com/api/v1/items?page=${pageNo}`)
+    fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/items?page=${pageNo}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.data.length > 0) {
@@ -22,7 +22,7 @@ const HomePage = () => {
   }, []);
 
   const getNewPage = () => {
-    fetch(`https://awaas-vishwa-be.onrender.com/api/v1/items?page=${pageNo+1}`)
+    fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/items?page=${pageNo+1}`)
     .then((response) => response.json())
     .then((data) => {
       if (data.data.length > 0) {

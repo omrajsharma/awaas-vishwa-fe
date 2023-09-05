@@ -5,7 +5,7 @@ export function UserContextProvider({children}) {
     const [userInfo, setUserInfo] = useState();
 
     useEffect(() => {
-        fetch(`https://awaas-vishwa-be.onrender.com/api/v1/auth/profile`, {
+        fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/auth/profile`, {
           credentials: 'include'
         })
         .then(res => res.json())

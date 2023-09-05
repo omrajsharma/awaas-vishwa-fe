@@ -15,7 +15,7 @@ const ItemDetailPage = () => {
     const [itemDetails, setItemDetails] = React.useState();
 
     useEffect(() => {
-        fetch(`https://awaas-vishwa-be.onrender.com/api/v1/items/${itemId}`, {
+        fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/items/${itemId}`, {
             credentials: 'include'
         })
         .then((response) => {
@@ -40,7 +40,7 @@ const ItemDetailPage = () => {
         }
 
         // api request to send email to the author
-        fetch(`https://awaas-vishwa-be.onrender.com/api/v1/items/lead`, {
+        fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/items/lead`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

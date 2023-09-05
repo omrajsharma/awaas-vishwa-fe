@@ -9,7 +9,7 @@ const Header = () => {
   const {userInfo, setUserInfo} = React.useContext(UserContext)
 
   const logoutUser = () => {
-    fetch(`https://awaas-vishwa-be.onrender.com/api/v1/auth/logout`, {
+    fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/auth/logout`, {
       credentials: 'include',
       method: 'POST'
     })
@@ -17,7 +17,7 @@ const Header = () => {
   }
 
   // useEffect(() => {
-  //   fetch(`https://awaas-vishwa-be.onrender.com/api/v1/auth/profile`, {
+  //   fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/auth/profile`, {
   //     credentials: 'include'
   //   })
   //   .then(res => res.json())

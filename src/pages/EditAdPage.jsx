@@ -40,7 +40,7 @@ const EditAdPage = () => {
   const {itemId} = useParams();
 
   React.useEffect(() => {
-    fetch(`https://awaas-vishwa-be.onrender.com/api/v1/items/${itemId}`, {
+    fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/items/${itemId}`, {
         credentials: 'include'
     })
     .then((response) => response.json())
@@ -115,7 +115,7 @@ const EditAdPage = () => {
     }
     const imgListVal = imgList.current;
 
-    const response = await fetch(`https://awaas-vishwa-be.onrender.com/api/v1/items/${itemId}`, {
+    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/items/${itemId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

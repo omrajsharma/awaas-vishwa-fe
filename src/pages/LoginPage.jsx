@@ -24,7 +24,7 @@ const LoginPage = () => {
     const usernameVal = username.current.value;
     const passwordVal = password.current.value;
 
-    const response = await fetch(`https://awaas-vishwa-be.onrender.com/api/v1/auth/login`, {
+    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -91,7 +91,7 @@ const CreateAdPage = () => {
     }
     const imgListVal = imgList.current;
 
-    const response = await fetch(`https://awaas-vishwa-be.onrender.com/api/v1/items`, {
+    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/items`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
