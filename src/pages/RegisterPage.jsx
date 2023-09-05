@@ -6,8 +6,11 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import Tooltip from '@mui/material/Tooltip';
-
+import { useLocation } from "react-router-dom";
 const RegisterPage = () => {
+  const location = useLocation();
+  const previousLocation=location.state; 
+  console.log(previousLocation);
   const [redirect, setRedirect] = React.useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
   const name = React.useRef();
@@ -15,7 +18,6 @@ const RegisterPage = () => {
   const email = React.useRef();
   const username = React.useRef();
   const password = React.useRef();
-
   const handleSubmit = async (ev) => {
     ev.preventDefault();
 
@@ -25,7 +27,7 @@ const RegisterPage = () => {
     const usernameVal = username.current.value;
     const passwordVal = password.current.value;
 
-    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/auth/register`, {
+    const response = await fetch(`https://awaas-vishwa-be.onrender.com/api/v1/auth/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -42,13 +44,14 @@ const RegisterPage = () => {
     if (response.ok) {
       alert('User Registered', 'success')
       setRedirect(true)
+      // navigate(previousLocation);
     } else {
       alert(data.error, 'error')
     }
   };
 
   if (redirect) {
-    return <Navigate to={'/login'} />
+    return <Navigate to={'/login'} state={previousLocation}/>
   }
 
   return (
@@ -134,7 +137,7 @@ const RegisterPage = () => {
             >
               Sign Up
             </Button>
-               <div id="login-link">Already have an account?<Link to="/login">
+               <div id="login-link">Already have an account?<Link to="/login" state={previousLocation}>
                <div className="login-btn">Login</div>
               </Link>
             </div>

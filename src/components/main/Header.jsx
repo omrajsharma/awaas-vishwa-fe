@@ -2,12 +2,14 @@ import React, { useEffect } from 'react'
 import { UserContext } from '../../context/UserContext'
 import Logo from '../../assets/logo.png'
 import { Link } from 'react-router-dom'
+import {useLocation} from 'react-router-dom'
 
 const Header = () => {
+  const location=useLocation();
   const {userInfo, setUserInfo} = React.useContext(UserContext)
 
   const logoutUser = () => {
-    fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/auth/logout`, {
+    fetch(`https://awaas-vishwa-be.onrender.com/api/v1/auth/logout`, {
       credentials: 'include',
       method: 'POST'
     })
@@ -15,7 +17,7 @@ const Header = () => {
   }
 
   // useEffect(() => {
-  //   fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/auth/profile`, {
+  //   fetch(`https://awaas-vishwa-be.onrender.com/api/v1/auth/profile`, {
   //     credentials: 'include'
   //   })
   //   .then(res => res.json())
@@ -43,8 +45,8 @@ const Header = () => {
                 </>
               ) : (
                 <>
-                  <Link to="/login">login</Link>
-                  <Link to="/register">Signup</Link>
+                  <Link to="/login" state={(location.pathname=='/login'||location.pathname=='/register')?location.state:location.pathname}>login</Link>
+                  <Link to="/register" state={(location.pathname=='/login'||location.pathname=='/register')?location.state:location.pathname}>Signup</Link>
                 </>
               )
             }

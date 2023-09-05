@@ -2,25 +2,29 @@ import React, { useState } from "react";
 import { UserContext } from "../context/UserContext";
 import { TextField, Button, IconButton, InputAdornment, Tooltip, } from "@mui/material";
 import alert from "../utility/alert";
-import { Link, Navigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import {useNavigate,useLocation} from 'react-router-dom';
 
 const LoginPage = () => {
+  const location = useLocation();
+  const previousLocation=location.state; 
+  console.log(previousLocation);
   const {setUserInfo} = React.useContext(UserContext);
   const [redirect, setRedirect] = React.useState(false);
   const [showPassword, setShowPassword] = useState(false); // New state for password visibility
   const username = React.useRef();
   const password = React.useRef();
-
+  const navigate = useNavigate();
   const handleSubmit = async (ev) => {
     ev.preventDefault();
 
     const usernameVal = username.current.value;
     const passwordVal = password.current.value;
 
-    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/auth/login`, {
+    const response = await fetch(`https://awaas-vishwa-be.onrender.com/api/v1/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -36,13 +40,16 @@ const LoginPage = () => {
       alert(data.success, 'success')
       setUserInfo(data.data)
       setRedirect(true)
+      navigate(previousLocation);
     } else {
       alert(data.error, 'error')
     }
   }
 
   if (redirect) {
-    return <Navigate to={'/'} />
+    // navigate(-1);
+    // return <Navigate to={'/'} />
+    //  history.goBack();
   }
 
   return (
@@ -101,7 +108,8 @@ const LoginPage = () => {
             >
               Login
             </Button>
-                 <div id="login-link">Create a new account? <Link to="/register">
+                 <div id="login-link">Create a new account? <Link to="/register"
+                  state={previousLocation}>
                  <div className="login-btn">SignUp
                 </div>
               </Link>
