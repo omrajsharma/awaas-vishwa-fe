@@ -148,7 +148,7 @@ const RegisterPage = () => {
             />
             <div className="recaptchaContainer">
               <ReCAPTCHA
-                sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                sitekey={import.meta.env.VITE_RECAPTCHA_KEY}
                 onChange={onChange}
                 className="recaptcha"
               />
