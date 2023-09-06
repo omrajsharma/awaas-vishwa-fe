@@ -458,3 +458,19 @@ footer, .footer-pad {
     font-size: 14px;
     color: #444;
 }
+
+.signup-btn:disabled {
+     margin-top: 20px;
+    font-weight: bold;
+    background-color: red;
+    padding: 0.4em;
+    border: thin solid grey;
+    border-radius: 3px;
+}
+
+.recaptchaContainer {
+    width: 100%;
+    display: grid;
+    place-items: center;
+    margin-top: 20px;
+}
