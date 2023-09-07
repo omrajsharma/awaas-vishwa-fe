@@ -3,6 +3,7 @@ import { itemDateFormatter } from "../utility/DateUtils";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { numberToCommaString } from "../utility/numberUtils";
+import ToTheTop from "../components/util/ToTheTop.jsx";
 
 const HomePage = () => {
   const [itemList, setItemList] = React.useState([]);
@@ -11,7 +12,8 @@ const HomePage = () => {
 
   React.useEffect(() => {
     fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/items?page=${pageNo}`)
-      .then((response) => response.json())
+
+    .then((response) => response.json())
       .then((data) => {
         if (data.data.length > 0) {
           setItemList(data.data);
