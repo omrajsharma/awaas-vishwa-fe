@@ -1,16 +1,23 @@
 import React from "react";
+import Filters from "../components/pages/HomePage/Filters";
 import { itemDateFormatter } from "../utility/DateUtils";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { numberToCommaString } from "../utility/numberUtils";
 
 const HomePage = () => {
+  const [filters, setFilters] = React.useState({});
   const [itemList, setItemList] = React.useState([]);
   const [pageNo, setPageNo] = React.useState(1);
   const [noMoreItems, setNoMoreItems] = React.useState(false);
 
+  const getFiltersQuery = () => {
+    return Object.keys(filters).length > 0 ? '&' + (Object.keys(filters).map(key => `${key}=${filters[key]}`).join('&')) : '';
+  }
+
   React.useEffect(() => {
-    fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/items?page=${pageNo}`)
+    setPageNo(1);
+    fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/items?page=1${getFiltersQuery()}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.data.length > 0) {
@@ -19,23 +26,24 @@ const HomePage = () => {
           setNoMoreItems(true);
         }
       });
-  }, []);
+  }, [filters]);
 
   const getNewPage = () => {
-    fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/items?page=${pageNo + 1}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.data.length > 0) {
-          setItemList([...itemList, ...data.data]);
-        } else {
-          setNoMoreItems(true);
-        }
-      });
-    setPageNo(pageNo + 1);
-  };
+    fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/items?page=${pageNo+1}${getFiltersQuery()}`)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.data.length > 0) {
+        setItemList([...itemList, ...data.data]);
+      } else {
+        setNoMoreItems(true);
+      }
+    });
+    setPageNo(pageNo+1);
+  }
 
   return (
     <>
+      <Filters filters={filters} setFilters={setFilters} />
       <div className="item-list">
         {itemList.length > 0 &&
           itemList.map((item, key) => <ItemCard key={item.id} {...item} />)}
