@@ -36,13 +36,10 @@ const LoginPage = () => {
       alert(data.success, 'success')
       setUserInfo(data.data)
       setRedirect(true)
+      window.history.go(-1);
     } else {
       alert(data.error, 'error')
     }
-  }
-
-  if (redirect) {
-    return <Navigate to={'/'} />
   }
 
   return (
