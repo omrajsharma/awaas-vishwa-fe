@@ -3,7 +3,6 @@ import { itemDateFormatter } from "../utility/DateUtils";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { numberToCommaString } from "../utility/numberUtils";
-import ToTheTop from "../components/util/ToTheTop.jsx";
 
 const HomePage = () => {
   const [itemList, setItemList] = React.useState([]);
@@ -12,8 +11,7 @@ const HomePage = () => {
 
   React.useEffect(() => {
     fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/items?page=${pageNo}`)
-
-    .then((response) => response.json())
+      .then((response) => response.json())
       .then((data) => {
         if (data.data.length > 0) {
           setItemList(data.data);
@@ -24,17 +22,17 @@ const HomePage = () => {
   }, []);
 
   const getNewPage = () => {
-    fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/items?page=${pageNo+1}`)
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.data.length > 0) {
-        setItemList([...itemList, ...data.data]);
-      } else {
-        setNoMoreItems(true);
-      }
-    });
-    setPageNo(pageNo+1);
-  }
+    fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/items?page=${pageNo + 1}`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.data.length > 0) {
+          setItemList([...itemList, ...data.data]);
+        } else {
+          setNoMoreItems(true);
+        }
+      });
+    setPageNo(pageNo + 1);
+  };
 
   return (
     <>
@@ -43,15 +41,15 @@ const HomePage = () => {
           itemList.map((item, key) => <ItemCard key={item.id} {...item} />)}
       </div>
       <div className="next-page">
-        { noMoreItems ?
-            <Button variant="contained" disabled >
-              No More Items
-            </Button>
-            :
-            <Button variant="contained" onClick={getNewPage}>
-              Load More
-            </Button>
-        }
+        {noMoreItems ? (
+          <Button variant="contained" disabled>
+            No More Items
+          </Button>
+        ) : (
+          <Button variant="contained" onClick={getNewPage}>
+            Load More
+          </Button>
+        )}
       </div>
     </>
   );
