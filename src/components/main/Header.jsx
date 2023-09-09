@@ -1,10 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { UserContext } from '../../context/UserContext'
 import Logo from '../../assets/logo.png'
 import { Link } from 'react-router-dom'
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import DarkModeTwoToneIcon from '@mui/icons-material/DarkModeTwoTone';
+import { useRef } from 'react';
 
 const Header = () => {
   const {userInfo, setUserInfo} = React.useContext(UserContext)
+  const [darkMode, setDarkMode] = useState(false);
+  const bodyRef = useRef(document.body);
 
   const logoutUser = () => {
     fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/auth/logout`, {
@@ -13,6 +18,18 @@ const Header = () => {
     })
     setUserInfo(null);
   }
+
+  const handleDarkModeToggle = () => {
+    setDarkMode(!darkMode);
+  }
+
+  useEffect(()=>{
+    if(darkMode){
+      bodyRef.current.classList.add('dark-mode');
+    } else {
+      bodyRef.current.classList.remove('dark-mode');
+    }
+  }, [darkMode])
 
   // useEffect(() => {
   //   fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/auth/profile`, {
@@ -32,6 +49,11 @@ const Header = () => {
           </Link>
         </div>
         <div className="header-right">
+          <div className='dark-mode-toggle'>
+            <button onClick={handleDarkModeToggle}>
+            {darkMode? <LightModeOutlinedIcon/> : <DarkModeTwoToneIcon/>}
+            </button>
+          </div>
           <div className="header-right-login">
             {
               userInfo ? (
