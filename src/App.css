@@ -22,7 +22,7 @@
 * HEADER
 */
 header {
-    position: sticky;
+    position: static;
     top: 0;
     height: 60px;
     background-color: #fff;
