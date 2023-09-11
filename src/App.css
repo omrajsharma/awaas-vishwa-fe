@@ -206,6 +206,28 @@ footer, .footer-pad {
     display: flex;
     gap: 10px;
 }
+.search-filter{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+.search-input{
+    font-size: 1rem;
+    padding: 10px;
+    width: 50vw;
+    border: 1px solid black;
+    border-radius: 3px;
+    color: black;
+    font-weight: 400;
+}
+.search-button{
+    position: relative;
+    display: inline;
+    right: 35px;
+    bottom: -5px;
+    background: transparent;
+    border: none;
+}
 .item-list {
     max-width: 1200px;
     margin: auto;
@@ -355,6 +377,9 @@ footer, .footer-pad {
     }
     .item-detail-imgs, .item-detail-body {
         width: 100%;
+    }
+    .search-input{
+        width: 90vw;
     }
 }
 
