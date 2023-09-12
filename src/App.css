@@ -423,7 +423,7 @@ footer,
 }
 .item-detail-description p {
     font-size: 14px;
-    color: #444;
+    color: var(--text-color);
     margin-bottom: 4px;
 }
 @media only screen and (max-width: 700px) {
