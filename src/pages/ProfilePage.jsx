@@ -58,10 +58,6 @@ const Profile = () => {
       <div className="settings">
         <div className="settings-header">Settings</div>
         <div className="settings-item">
-          <span>Dark Mode</span>
-          <Switch defaultChecked /> 
-        </div>
-        <div className="settings-item">
           <span>Logout</span>
           <LogoutIcon style={{fontSize: '28px'}} onClick={logoutUser} />
         </div>
