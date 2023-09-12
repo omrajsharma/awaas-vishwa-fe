@@ -49,15 +49,15 @@ const HomePage = () => {
           itemList.map((item, key) => <ItemCard key={item.id} {...item} />)}
       </div>
       <div className="next-page">
-        { noMoreItems ?
-            <Button variant="contained" disabled >
-              No More Items
-            </Button>
-            :
-            <Button variant="contained" onClick={getNewPage}>
-              Load More
-            </Button>
-        }
+        {noMoreItems ? (
+          <Button variant="contained" disabled>
+            No More Items
+          </Button>
+        ) : (
+          <Button variant="contained" onClick={getNewPage}>
+            Load More
+          </Button>
+        )}
       </div>
     </>
   );
