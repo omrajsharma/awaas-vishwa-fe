@@ -562,3 +562,31 @@ footer,
   place-items: center;
   margin-top: 20px;
 }
+
+@media only screen and (max-width: 800px) {
+  .scroll-to-top {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+  }
+}
+
+
+@media only screen and (min-width: 800px) {
+  .scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 0px 20px;
+    cursor: pointer;
+  }
+}
+
+
+.scroll-to-top.show {
+  display: block;
+}
+
+.scroll-to-top.hide {
+  display: none;
+}
