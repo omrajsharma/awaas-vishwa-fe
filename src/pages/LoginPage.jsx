@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { UserContext } from "../context/UserContext";
 import { TextField, Button, IconButton, InputAdornment, Tooltip, } from "@mui/material";
 import alert from "../utility/alert";
-import { Link, Navigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 const LoginPage = () => {
   const {setUserInfo} = React.useContext(UserContext);
-  const [redirect, setRedirect] = React.useState(false);
   const [showPassword, setShowPassword] = useState(false); // New state for password visibility
   const username = React.useRef();
   const password = React.useRef();
@@ -35,7 +34,6 @@ const LoginPage = () => {
     if (response.ok) {
       alert(data.success, 'success')
       setUserInfo(data.data)
-      setRedirect(true)
       window.history.go(-1);
     } else {
       alert(data.error, 'error')
