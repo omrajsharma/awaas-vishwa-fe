@@ -50,7 +50,7 @@ const HomePage = () => {
       </div>
       <div className="next-page">
         {noMoreItems ? (
-          <Button variant="contained" disabled>
+          <Button variant="contained" disabled className="btn-disabled">
             No More Items
           </Button>
         ) : (
