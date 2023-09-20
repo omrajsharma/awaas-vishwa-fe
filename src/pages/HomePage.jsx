@@ -5,7 +5,8 @@ import { itemDateFormatter } from "../utility/DateUtils";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { numberToCommaString } from "../utility/numberUtils";
-import Loading from "../components/util/Loading";
+// import Loading from "../components/util/Loading";
+import HomePageSkeleton from "../utility/HomePageSkeleton";
 
 const HomePage = () => {
   const [filters, setFilters] = React.useState({});
@@ -49,15 +50,21 @@ const HomePage = () => {
     setPageNo(pageNo+1);
   }
 
+
   return (
-    <>{
-    loading ? <Loading /> : <>
+     <>
       <SearchFilter filters={filters} setFilters={setFilters} />
       <Filters filters={filters} setFilters={setFilters} />
       <div className="item-list">
-        {itemList.length > 0 &&
-          itemList.map((item, key) => <ItemCard key={item.id} {...item} />)}
-      </div>
+      {itemList.length > 0 ? (
+      itemList.map((item, key) => <ItemCard key={item.id} {...item} />)
+    ) : (
+      // Render SkeletonCards when itemList is empty
+      Array.from({ length: 12 }).map((_, index) => (
+        <HomePageSkeleton key={index} />
+      ))
+    )}
+    </div>
       <div className="next-page">
         {noMoreItems ? (
           <Button variant="contained" disabled className="btn-disabled">
@@ -70,8 +77,6 @@ const HomePage = () => {
         )}
       </div>
       </>
-    }
-    </>
   );
 };
 

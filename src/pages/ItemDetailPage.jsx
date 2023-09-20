@@ -6,6 +6,7 @@ import { itemDateFormatter } from '../utility/DateUtils';
 import { Button } from '@mui/material';
 import { numberToCommaString } from '../utility/numberUtils';
 import alert from '../utility/alert';
+import ItemDetailSkeleton from '../utility/ItemDetailsSkeleton';
 
 const ItemDetailPage = () => {
     const {userInfo} = React.useContext(UserContext);
@@ -71,7 +72,7 @@ const ItemDetailPage = () => {
     }
 
     if (!itemDetails) {
-        return <Loading />
+        return <ItemDetailSkeleton />
     }
 
   return (
